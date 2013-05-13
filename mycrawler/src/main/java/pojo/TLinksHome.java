@@ -3,15 +3,19 @@ package pojo;
 // Generated 2013-5-13 0:41:16 by Hibernate Tools 3.4.0.CR1
 
 import java.util.List;
+
 import javax.naming.InitialContext;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
 
 /**
  * Home object for domain model class TLinks.
+ * 
  * @see pojo.TLinks
  * @author Hibernate Tools
  */
@@ -23,8 +27,8 @@ public class TLinksHome {
 
 	protected SessionFactory getSessionFactory() {
 		try {
-			return (SessionFactory) new InitialContext()
-					.lookup("SessionFactory");
+			Configuration cfg = new Configuration().configure();
+			return cfg.buildSessionFactory();
 		} catch (Exception e) {
 			log.error("Could not locate SessionFactory in JNDI", e);
 			throw new IllegalStateException(

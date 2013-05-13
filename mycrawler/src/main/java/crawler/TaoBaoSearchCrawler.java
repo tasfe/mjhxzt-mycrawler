@@ -1,13 +1,12 @@
 package crawler;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.regex.Pattern;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import pojo.TLinks;
+import pojo.TLinksHome;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -21,8 +20,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
  */
 public class TaoBaoSearchCrawler extends WebCrawler {
 
-	private final static Pattern FILTERS = Pattern.compile("(.*)/search");
-
+	private static final Log log = LogFactory.getLog(TaoBaoSearchCrawler.class);
 	/**
 	 * You should implement this function to specify whether the given url
 	 * should be crawled or not (based on your crawling logic).
@@ -44,8 +42,14 @@ public class TaoBaoSearchCrawler extends WebCrawler {
 			List<WebURL> links = htmlParseData.getOutgoingUrls();
 			for (WebURL webURL : links) {
 				if (isRelativeLink(webURL)) {
-					System.out.println("发现相关词，深度：" + webURL.getDepth() + "，链接："
+					log.info("发现相关词，深度：" + webURL.getDepth() + "，链接："
 							+ webURL.getURL() + "名称：" + webURL.getAnchor() + webURL.getParentDocid());
+					TLinks link = new TLinks();
+					link.setAnchor(webURL.getAnchor());
+					link.setDepth(webURL.getDepth());
+					link.setParentDocId(webURL.getParentDocid());
+					TLinksHome linksHome = new TLinksHome();
+					linksHome.persist(link);
 				}
 			}
 		}
