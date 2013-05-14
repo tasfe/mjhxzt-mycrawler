@@ -10,7 +10,7 @@ import java.util.Date;
 public class TLinks implements java.io.Serializable {
 
 	private Integer id;
-	private int depth;
+	private Short depth;
 	private String anchor;
 	private String url;
 	private Date createTime;
@@ -19,12 +19,12 @@ public class TLinks implements java.io.Serializable {
 	public TLinks() {
 	}
 
-	public TLinks(int depth, Date createTime) {
+	public TLinks(Short depth, Date createTime) {
 		this.depth = depth;
 		this.createTime = createTime;
 	}
 
-	public TLinks(int depth, String anchor, String url, Date createTime,
+	public TLinks(Short depth, String anchor, String url, Date createTime,
 			Integer parentDocId) {
 		this.depth = depth;
 		this.anchor = anchor;
@@ -41,11 +41,11 @@ public class TLinks implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public int getDepth() {
+	public Short getDepth() {
 		return this.depth;
 	}
 
-	public void setDepth(int depth) {
+	public void setDepth(Short depth) {
 		this.depth = depth;
 	}
 

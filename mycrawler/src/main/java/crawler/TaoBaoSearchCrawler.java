@@ -6,7 +6,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import pojo.TLinks;
-import pojo.TLinksHome;
+import dao.DaoFactory;
+import dao.TLinksHome;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -46,9 +47,10 @@ public class TaoBaoSearchCrawler extends WebCrawler {
 							+ webURL.getURL() + "名称：" + webURL.getAnchor() + webURL.getParentDocid());
 					TLinks link = new TLinks();
 					link.setAnchor(webURL.getAnchor());
+					link.setUrl(webURL.getURL());
 					link.setDepth(webURL.getDepth());
 					link.setParentDocId(webURL.getParentDocid());
-					TLinksHome linksHome = new TLinksHome();
+					TLinksHome linksHome = DaoFactory.getTLinksHome();
 					linksHome.persist(link);
 				}
 			}

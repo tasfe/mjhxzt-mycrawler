@@ -1,17 +1,14 @@
-package pojo;
+package dao;
 
 // Generated 2013-5-13 0:41:16 by Hibernate Tools 3.4.0.CR1
 
 import java.util.List;
 
-import javax.naming.InitialContext;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Example;
+
+import pojo.TLinks;
 
 /**
  * Home object for domain model class TLinks.
@@ -19,27 +16,24 @@ import org.hibernate.criterion.Example;
  * @see pojo.TLinks
  * @author Hibernate Tools
  */
-public class TLinksHome {
+public class TLinksHome extends HibernateDaoBase {
 
 	private static final Log log = LogFactory.getLog(TLinksHome.class);
 
-	private final SessionFactory sessionFactory = getSessionFactory();
-
-	protected SessionFactory getSessionFactory() {
+	public List list(TLinks transientInstance) {
+		log.debug("List TLinks instance");
 		try {
-			Configuration cfg = new Configuration().configure();
-			return cfg.buildSessionFactory();
-		} catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException(
-					"Could not locate SessionFactory in JNDI");
+			return this.getHibernateTemplate().findByExample(transientInstance);
+		} catch (RuntimeException re) {
+			log.error("persist failed", re);
+			throw re;
 		}
 	}
-
+	
 	public void persist(TLinks transientInstance) {
 		log.debug("persisting TLinks instance");
 		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
+			this.getHibernateTemplate().save(transientInstance);
 			log.debug("persist successful");
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
@@ -50,7 +44,7 @@ public class TLinksHome {
 	public void attachDirty(TLinks instance) {
 		log.debug("attaching dirty TLinks instance");
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+			this.getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
@@ -61,7 +55,7 @@ public class TLinksHome {
 	public void attachClean(TLinks instance) {
 		log.debug("attaching clean TLinks instance");
 		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			this.getHibernateTemplate().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
@@ -72,7 +66,7 @@ public class TLinksHome {
 	public void delete(TLinks persistentInstance) {
 		log.debug("deleting TLinks instance");
 		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
+			this.getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
 			log.error("delete failed", re);
@@ -83,7 +77,7 @@ public class TLinksHome {
 	public TLinks merge(TLinks detachedInstance) {
 		log.debug("merging TLinks instance");
 		try {
-			TLinks result = (TLinks) sessionFactory.getCurrentSession().merge(
+			TLinks result = (TLinks) this.getHibernateTemplate().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -96,8 +90,8 @@ public class TLinksHome {
 	public TLinks findById(java.lang.Integer id) {
 		log.debug("getting TLinks instance with id: " + id);
 		try {
-			TLinks instance = (TLinks) sessionFactory.getCurrentSession().get(
-					"pojo.TLinks", id);
+			TLinks instance = (TLinks) this.getHibernateTemplate().get(
+					TLinks.class, id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -110,18 +104,18 @@ public class TLinksHome {
 		}
 	}
 
-	public List findByExample(TLinks instance) {
-		log.debug("finding TLinks instance by example");
-		try {
-			List results = sessionFactory.getCurrentSession()
-					.createCriteria("pojo.TLinks")
-					.add(Example.create(instance)).list();
-			log.debug("find by example successful, result size: "
-					+ results.size());
-			return results;
-		} catch (RuntimeException re) {
-			log.error("find by example failed", re);
-			throw re;
-		}
-	}
+	// public List findByExample(TLinks instance) {
+	// log.debug("finding TLinks instance by example");
+	// try {
+	// List results = this.getHibernateTemplate()
+	// .c("pojo.TLinks")
+	// .add(Example.create(instance)).list();
+	// log.debug("find by example successful, result size: "
+	// + results.size());
+	// return results;
+	// } catch (RuntimeException re) {
+	// log.error("find by example failed", re);
+	// throw re;
+	// }
+	// }
 }

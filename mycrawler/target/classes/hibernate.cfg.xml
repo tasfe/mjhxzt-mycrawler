@@ -4,6 +4,7 @@
 <hibernate-configuration>
  <session-factory name="mycrawler">
   <property name="show_sql">true</property>
-  <property name="current_session_context_class">thread</property>  
+  <property name="current_session_context_class">thread</property>
+  <mapping resource="pojo/TLinks.hbm.xml" /> 
  </session-factory>
 </hibernate-configuration>
