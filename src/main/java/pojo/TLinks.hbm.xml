@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-5-13 0:41:16 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class catalog="mycrawler" name="pojo.TLinks" table="t_links">
+  <id name="id" type="java.lang.Integer">
+   <column name="ID"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="depth" type="short">
+   <column name="DEPTH" not-null="true">
+    <comment>Éî¶È</comment>
+   </column>
+  </property>
+  <property generated="never" lazy="false" name="anchor" type="string">
+   <column length="50" name="ANCHOR">
+    <comment>½ÓÁ´Ãû³Æ</comment>
+   </column>
+  </property>
+  <property generated="never" lazy="false" name="url" type="string">
+   <column length="500" name="URL">
+    <comment>Á´½Ó</comment>
+   </column>
+  </property>
+  <property generated="never" insert="false" lazy="false"
+   name="createTime" type="timestamp">
+   <column length="19" name="CREATE_TIME" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="parentDocId" type="java.lang.Integer">
+   <column name="PARENT_DOC_ID"/>
+  </property>
+ </class>
+</hibernate-mapping>
