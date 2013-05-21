@@ -14,7 +14,7 @@
         <property name="lastVisitTime" type="timestamp">
             <column name="last_visit_time" length="19" />
         </property>
-        <set name="TLinkses" table="t_links" inverse="true" lazy="true" fetch="select">
+        <set name="TLinkses" table="t_links" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="seed_id" />
             </key>

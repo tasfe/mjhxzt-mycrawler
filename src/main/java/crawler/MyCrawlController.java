@@ -24,10 +24,10 @@ public class MyCrawlController extends CrawlController {
 	@Override
 	public void addSeed(String pageUrl) {
 		super.addSeed(pageUrl);
-		TSeed seed = new TSeed();
+		/*TSeed seed = new TSeed();
 		seed.setSeed(pageUrl);
 		seed.setLastVisitTime(new Date());
-		DaoFactory.getTSeedHome().persist(seed);
+		DaoFactory.getTSeedHome().persist(seed);*/
 	}
 
 }

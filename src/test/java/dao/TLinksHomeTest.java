@@ -1,18 +1,26 @@
 package dao;
 
-import junit.framework.TestCase;
+import pojo.TLinks;
+import pojo.TSeed;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class TLinksHomeTest extends TestBase {
+	private TLinksHome linksHome ;
 
-public class TLinksHomeTest extends TestCase {
-	private TLinksHome linksHome = new TLinksHome();
-
-	public void testConn() {
-		ApplicationContext cxt = new ClassPathXmlApplicationContext(
-				"applicationContext.xml");
-		linksHome = cxt.getBean(TLinksHome.class);
-		assertNull(linksHome.findById(1));
+	public TLinksHomeTest() {
+		linksHome = getCxt().getBean(TLinksHome.class);
+	}
+	
+	public void testQuery() {
+		TSeed instance = new TSeed();
+		instance.setId(13);
+		TLinks cLinks = new TLinks();
+		cLinks.setTSeed(instance);
+		System.out.println(linksHome.list(cLinks));
+		
+		
+//		List<TSeed> list = seedHome.findByExample(instance );
+//		System.out.println(list.get(0));
+//		System.out.println(list.get(0).getTLinkses());
 	}
 
 }

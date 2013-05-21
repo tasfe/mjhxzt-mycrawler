@@ -1,5 +1,6 @@
 package crawler;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,9 +21,11 @@ import edu.uci.ics.crawler4j.url.WebURL;
  * @author Zhoutao
  * 
  */
-public class TaoBaoSearchCrawler extends WebCrawler {
+public class TaobaoSearchCrawler extends WebCrawler {
 
-	private static final Log log = LogFactory.getLog(TaoBaoSearchCrawler.class);
+	private static final Log log = LogFactory.getLog(TaobaoSearchCrawler.class);
+	
+	private List<TLinks> relativeLinks = new ArrayList<TLinks>();
 	/**
 	 * You should implement this function to specify whether the given url
 	 * should be crawled or not (based on your crawling logic).
@@ -52,8 +55,7 @@ public class TaoBaoSearchCrawler extends WebCrawler {
 					link.setDepth(webURL.getDepth());
 					link.setParentDocId(webURL.getParentDocid());
 					link.setCreateTime(new Date());
-					TLinksHome linksHome = DaoFactory.getTLinksHome();
-					linksHome.persist(link);
+					relativeLinks.add(link);
 				}
 			}
 		}
@@ -70,5 +72,12 @@ public class TaoBaoSearchCrawler extends WebCrawler {
 
 		return isRelative;
 	}
+	
+	// This function is called by controller to get the local data of this
+		// crawler when job is finished
+		@Override
+		public Object getMyLocalData() {
+			return relativeLinks;
+		}
 
 }

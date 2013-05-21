@@ -98,12 +98,10 @@ public class TSeedHome  extends HibernateDaoBase {
 		}
 	}
 
-	/*public List findByExample(TSeed instance) {
+	public List findByExample(TSeed instance) {
 		log.debug("finding TSeed instance by example");
 		try {
-			List results = this.getHibernateTemplate()
-					.createCriteria("pojo.TSeed").add(Example.create(instance))
-					.list();
+			List results = this.getHibernateTemplate().findByExample(instance);
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -111,5 +109,5 @@ public class TSeedHome  extends HibernateDaoBase {
 			log.error("find by example failed", re);
 			throw re;
 		}
-	}*/
+	}
 }
