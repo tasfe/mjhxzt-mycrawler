@@ -53,6 +53,7 @@ public class TbHomePageHotSearchCrawler extends WebCrawler {
 		if (page.getParseData() instanceof HtmlParseData) {
 			HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 			String html = htmlParseData.getHtml();
+			System.out.println(html);
 			List<WebURL> links = htmlParseData.getOutgoingUrls();
 			for (WebURL webURL : links) {
 				if (isRelativeLink(webURL)) {

@@ -22,7 +22,7 @@ public class CoreController {
 			return null;
 		}
 		String crawlStorageFolder = "E:/data/crawl/root";
-		int numberOfCrawlers = 3;
+		int numberOfCrawlers = 1;
 
 		CrawlConfig config = new CrawlConfig();
 		config.setUserAgentString("Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)");

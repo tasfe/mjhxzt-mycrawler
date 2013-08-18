@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import pojo.TLinks;
 import dao.DaoFactory;
@@ -24,7 +25,7 @@ import edu.uci.ics.crawler4j.url.WebURL;
  */
 public class TaobaoSearchCrawler extends WebCrawler {
 
-	private static final Log log = LogFactory.getLog(TaobaoSearchCrawler.class);
+	private static final Logger logger = Logger.getLogger(TaobaoSearchCrawler.class);
 	
 	private List<TLinks> relativeLinks = new ArrayList<TLinks>();
 	
@@ -50,7 +51,7 @@ public class TaobaoSearchCrawler extends WebCrawler {
 			List<WebURL> links = htmlParseData.getOutgoingUrls();
 			for (WebURL webURL : links) {
 				if (isRelativeLink(webURL)) {
-					log.info("发现相关词，深度：" + webURL.getDepth() + "，链接："
+					logger.info("发现相关词，深度：" + webURL.getDepth() + "，链接："
 							+ webURL.getURL() + "名称：" + webURL.getAnchor() + webURL.getParentDocid());
 					TLinks link = new TLinks();
 					link.setAnchor(webURL.getAnchor());
