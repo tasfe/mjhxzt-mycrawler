@@ -4,6 +4,7 @@
 	<properties>
 		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
 		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
+		<org.apache.lucene.version>4.4.0</org.apache.lucene.version>
 	</properties>
 	<groupId>mycrawler</groupId>
 	<artifactId>mycrawler</artifactId>
@@ -135,6 +136,28 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
+		
+		<!-- lucene -->
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-core</artifactId>
+		    <version>${org.apache.lucene.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.lucene</groupId>
+		    <artifactId>lucene-analyzers-common</artifactId>
+		    <version>${org.apache.lucene.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>${org.apache.lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-highlighter</artifactId>
+            <version>${org.apache.lucene.version}</version>
+        </dependency>
 	</dependencies>
 	<name>mycrawler</name>
 </project>
