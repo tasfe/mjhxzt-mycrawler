@@ -4,7 +4,7 @@
 	<properties>
 		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
 		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
-		<org.apache.lucene.version>4.4.0</org.apache.lucene.version>
+		<org.apache.lucene.version>4.0.0</org.apache.lucene.version>
 	</properties>
 	<groupId>mycrawler</groupId>
 	<artifactId>mycrawler</artifactId>
@@ -37,6 +37,13 @@
 			<artifactId>crawler4j</artifactId>
 			<version>3.6-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.paoding</groupId>
+			<artifactId>paoding-analysis</artifactId>
+			<version>2.0.4</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -157,6 +164,11 @@
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-highlighter</artifactId>
             <version>${org.apache.lucene.version}</version>
+        </dependency>
+        <dependency>
+        	<groupId>org.apache.commons</groupId>
+        	<artifactId>commons-lang3</artifactId>
+        	<version>3.1</version>
         </dependency>
 	</dependencies>
 	<name>mycrawler</name>
