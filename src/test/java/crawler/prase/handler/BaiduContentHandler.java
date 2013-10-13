@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package crawler.prase;
+package crawler.prase.handler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,6 +78,10 @@ public class BaiduContentHandler extends BodyContentHandler {
 			System.out.println(attributes.getValue("src") +attributes.getValue("id"));
 		}
 		
+		if (localName.equals("meta") && "description".equals(attributes.getValue("name"))) {
+			System.out.println(attributes.getValue("content"));
+		}
+		
 		if (element == Element.A || element == Element.AREA || element == Element.LINK) {
 			String href = attributes.getValue("href");
 			if (href != null) {
@@ -120,33 +124,7 @@ public class BaiduContentHandler extends BodyContentHandler {
 			return;
 		}
 
-		if (element == Element.META) {
-			String equiv = attributes.getValue("http-equiv");
-			String content = attributes.getValue("content");
-			if (equiv != null && content != null) {
-				equiv = equiv.toLowerCase();
-
-				// http-equiv="refresh" content="0;URL=http://foo.bar/..."
-				if (equiv.equals("refresh") && (metaRefresh == null)) {
-					int pos = content.toLowerCase().indexOf("url=");
-					if (pos != -1) {
-						metaRefresh = content.substring(pos + 4);
-					}
-					curUrl = new ExtractedUrlAnchorPair();
-					curUrl.setHref(metaRefresh);
-					outgoingUrls.add(curUrl);
-				}
-
-				// http-equiv="location" content="http://foo.bar/..."
-				if (equiv.equals("location") && (metaLocation == null)) {
-					metaLocation = content;
-					curUrl = new ExtractedUrlAnchorPair();
-					curUrl.setHref(metaRefresh);
-					outgoingUrls.add(curUrl);
-				}
-			}
-			return;
-		}
+		
 
 		if (element == Element.BODY) {
 			isWithinBodyElement = true;

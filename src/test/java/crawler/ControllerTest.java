@@ -2,10 +2,14 @@ package crawler;
 
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
-
 import junit.framework.TestCase;
-import controller.CoreController;
+
+import com.mycrawler.core.CoreController;
+import com.mycrawler.core.MyCrawlController;
+import com.mycrawler.taobao.controller.SearchController;
+import com.mycrawler.taobao.crawler.HomePageHotWordsCrawler;
+import com.mycrawler.taobao.crawler.RelativeWordsCrawler;
+
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
@@ -16,13 +20,13 @@ public class ControllerTest extends TestCase {
 	public void testConn() throws Exception {
 		String baseUrl = "http://s.taobao.com/search?q=${1}&initiative_id=staobaoz_20130508";
 		String url = baseUrl.replace("${1}", "阿迪达斯");
-		new TaobaoSearchController().crawlingTaobaoSearch(url);
+		new SearchController().crawlingTaobaoSearch(url);
 	}
 	
 	public void testControl() throws Exception {
 //		String baseUrl = "http://s.taobao.com/search?q=你好";
 		String baseUrl = "http://www.taobao.com";
-		new TaobaoSearchController().crawlingTaobaoSearch(baseUrl);
+		new SearchController().crawlingTaobaoSearch(baseUrl);
 	}
 	
 	public void testControl2() throws Exception {
@@ -45,15 +49,15 @@ public class ControllerTest extends TestCase {
 		MyCrawlController controller = new MyCrawlController(config,
 				pageFetcher, robotstxtServer);
 		controller.addSeed(baseUrl);
-		controller.start(TaobaoSearchCrawler.class, numberOfCrawlers);
+		controller.start(RelativeWordsCrawler.class, numberOfCrawlers);
 	}
 	
 	public void testHomePageControl() throws Exception {
-		new TaobaoSearchController().crawlingTaobaoSearchHot();
+		new SearchController().crawlingHomepageHotWords();
 	}
 	
 	public void testCoreController() throws Exception {
-		List<Object> list = new CoreController().crawling("http://www.taobao.com/", TbHomePageHotSearchCrawler.class);
+		List<Object> list = new CoreController().crawling("http://www.taobao.com/", HomePageHotWordsCrawler.class);
 	}
 	
 	

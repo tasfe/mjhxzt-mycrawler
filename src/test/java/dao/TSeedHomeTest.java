@@ -1,6 +1,7 @@
 package dao;
 
-import pojo.TSeed;
+import com.mycrawler.dao.TSeedHome;
+import com.mycrawler.pojo.TSeed;
 
 public class TSeedHomeTest extends TestBase {
 	private TSeedHome seedHome  = null;

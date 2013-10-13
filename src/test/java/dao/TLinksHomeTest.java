@@ -1,7 +1,8 @@
 package dao;
 
-import pojo.TLinks;
-import pojo.TSeed;
+import com.mycrawler.dao.TLinksHome;
+import com.mycrawler.pojo.TLinks;
+import com.mycrawler.pojo.TSeed;
 
 public class TLinksHomeTest extends TestBase {
 	private TLinksHome linksHome ;

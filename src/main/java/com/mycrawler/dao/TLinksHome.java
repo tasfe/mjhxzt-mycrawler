@@ -1,4 +1,4 @@
-package dao;
+package com.mycrawler.dao;
 
 // Generated 2013-5-13 0:41:16 by Hibernate Tools 3.4.0.CR1
 
@@ -8,7 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 
-import pojo.TLinks;
+import com.mycrawler.pojo.TLinks;
 
 /**
  * Home object for domain model class TLinks.
