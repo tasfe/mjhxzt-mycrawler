@@ -65,8 +65,6 @@ public class ParseTest extends TestCase {
 				LinkTag tag = (LinkTag) node;
 				sb.append(tag.getLinkText() + "--" + tag.getLink() + "\n");
 			}
-			
-			
 		}
 		parser.reset();
 		System.out.println(sb);

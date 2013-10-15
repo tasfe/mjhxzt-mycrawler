@@ -55,6 +55,10 @@ public class ControllerTest extends TestCase {
 	public void testHomePageControl() throws Exception {
 		new SearchController().crawlingHomepageHotWords();
 	}
+	public void testRelativeWordsController() throws Exception {
+		String seed = "http://search.taobao.com/search?q=%CA%D6%BB%FA%BF%C7&suggest=0_1&wq=%CA%D6%BB%FA&suggest_query=%CA%D6%BB%FA&source=suggest&atab=stats_click%3Dsearch_radio_all%253A1&jc=1&initiative_id=staobaoz_20131015";
+		List<Object> crawlersLocalData = new CoreController().crawling(seed , RelativeWordsCrawler.class);
+	}
 	
 	public void testCoreController() throws Exception {
 		List<Object> list = new CoreController().crawling("http://www.taobao.com/", HomePageHotWordsCrawler.class);
