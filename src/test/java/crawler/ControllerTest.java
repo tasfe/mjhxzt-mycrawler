@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 
 import com.mycrawler.core.CoreController;
 import com.mycrawler.core.MyCrawlController;
-import com.mycrawler.taobao.controller.SearchController;
+import com.mycrawler.taobao.controller.SearchPageController2;
 import com.mycrawler.taobao.crawler.HomePageHotWordsCrawler;
 import com.mycrawler.taobao.crawler.RelativeWordsCrawler;
 
@@ -20,13 +20,13 @@ public class ControllerTest extends TestCase {
 	public void testConn() throws Exception {
 		String baseUrl = "http://s.taobao.com/search?q=${1}&initiative_id=staobaoz_20130508";
 		String url = baseUrl.replace("${1}", "阿迪达斯");
-		new SearchController().crawlingTaobaoSearch(url);
+		new SearchPageController2().crawlingTaobaoSearch(url);
 	}
 	
 	public void testControl() throws Exception {
 //		String baseUrl = "http://s.taobao.com/search?q=你好";
 		String baseUrl = "http://www.taobao.com";
-		new SearchController().crawlingTaobaoSearch(baseUrl);
+		new SearchPageController2().crawlingTaobaoSearch(baseUrl);
 	}
 	
 	public void testControl2() throws Exception {
@@ -53,7 +53,7 @@ public class ControllerTest extends TestCase {
 	}
 	
 	public void testHomePageControl() throws Exception {
-		new SearchController().crawlingHomepageHotWords();
+		new SearchPageController2().crawlingHomepageHotWords();
 	}
 	public void testRelativeWordsController() throws Exception {
 		String seed = "http://search.taobao.com/search?q=%CA%D6%BB%FA%BF%C7&suggest=0_1&wq=%CA%D6%BB%FA&suggest_query=%CA%D6%BB%FA&source=suggest&atab=stats_click%3Dsearch_radio_all%253A1&jc=1&initiative_id=staobaoz_20131015";

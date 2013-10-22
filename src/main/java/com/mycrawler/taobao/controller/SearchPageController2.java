@@ -12,8 +12,12 @@ import com.mycrawler.pojo.TLinks;
 import com.mycrawler.pojo.TSeed;
 import com.mycrawler.taobao.crawler.HomePageHotWordsCrawler;
 import com.mycrawler.taobao.crawler.RelativeWordsCrawler;
-
-public class SearchController {
+/**
+ * 提取链接存到DB
+ * @author Zhoutao
+ *
+ */
+public class SearchPageController2 {
 
 	/**
 	 * 爬取淘宝搜索相关字

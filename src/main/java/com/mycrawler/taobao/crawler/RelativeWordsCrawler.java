@@ -52,16 +52,15 @@ public class RelativeWordsCrawler extends WebCrawler {
 		if (page.getParseData() instanceof HtmlParseData) {
 			HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 			String html = htmlParseData.getHtml();
-			System.out.println(html);
+//			System.out.println(html);
 			
-			/*Document doc = Jsoup.parse(html);
-			Elements eles = doc.select("a[href^='/search']");
+			Document doc = Jsoup.parse(html);
+			Elements eles = doc.select("a[trace='relatedSearch']");
 			if (eles != null && eles.size() > 0) {
 				for (Element child : eles) {
-					System.out.println(child.text() + ":" + child.attr("abs:href"));
+//					System.out.println(child.text() + ":" + child.attr("abs:href"));
 				}
-			}*/
-			
+			}
 			
 			
 			List<WebURL> links = htmlParseData.getOutgoingUrls();
@@ -74,6 +73,7 @@ public class RelativeWordsCrawler extends WebCrawler {
 					link.setUrl(webURL.getURL());
 					link.setDepth(webURL.getDepth());
 					link.setParentDocId(webURL.getParentDocid());
+					link.setDocId(webURL.getDocid());
 					link.setCreateTime(new Date());
 					relativeLinks.add(link);
 				}
