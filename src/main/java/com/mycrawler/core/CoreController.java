@@ -20,6 +20,7 @@ public class CoreController {
 		if (seed == null || seed == "") {
 			return null;
 		}
+		
 		String crawlStorageFolder = "E:/data/crawl/root";
 		int numberOfCrawlers = 1;
 

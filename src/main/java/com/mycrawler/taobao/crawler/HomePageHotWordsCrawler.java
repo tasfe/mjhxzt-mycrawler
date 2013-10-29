@@ -25,7 +25,7 @@ import org.htmlparser.util.ParserException;
 import org.htmlparser.util.SimpleNodeIterator;
 import org.xml.sax.SAXException;
 
-import com.mycrawler.pojo.TLinks;
+import com.mycrawler.pojo.TLink;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
@@ -43,7 +43,7 @@ public class HomePageHotWordsCrawler extends WebCrawler {
 	private static final Log log = LogFactory
 			.getLog(HomePageHotWordsCrawler.class);
 
-	private List<TLinks> relativeLinks = new ArrayList<TLinks>();
+	private List<TLink> relativeLinks = new ArrayList<TLink>();
 
 	private Pattern filters = Pattern
 			.compile("^http://s.taobao.com/search\\?(.*)(&?)q=(.*?)(&.*?)source=tbsy(.*)$");
@@ -84,7 +84,7 @@ public class HomePageHotWordsCrawler extends WebCrawler {
 						} catch (UnsupportedEncodingException e) {
 							log.error(e);
 						}
-						TLinks link = new TLinks();
+						TLink link = new TLink();
 						link.setAnchor(anchor);
 						link.setUrl(webURL.getURL());
 						link.setDepth(webURL.getDepth());

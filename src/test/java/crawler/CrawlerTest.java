@@ -22,8 +22,9 @@ import com.gargoylesoftware.htmlunit.WebWindowImpl;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.javascript.background.BackgroundJavaScriptFactory;
 import com.mycrawler.core.CoreController;
-import com.mycrawler.pojo.TLinks;
+import com.mycrawler.pojo.TLink;
 import com.mycrawler.taobao.crawler.HomePageHotWordsCrawler;
+import com.mycrawler.taobao.crawler.RelativeWordsCrawler;
 
 public class CrawlerTest extends TestCase {
 
@@ -31,16 +32,30 @@ public class CrawlerTest extends TestCase {
 		String seed = "http://www.taobao.com/";
 		List<Object> crawlersLocalData = new CoreController().crawling(seed, HomePageHotWordsCrawler.class);
 		if (CollectionUtils.isNotEmpty(crawlersLocalData)) {
-			List<TLinks> relativeLinks = (List<TLinks>) crawlersLocalData.get(0);
+			List<TLink> relativeLinks = (List<TLink>) crawlersLocalData.get(0);
 			if (CollectionUtils.isNotEmpty(relativeLinks)) {
-				for (TLinks tLinks : relativeLinks) {
+				for (TLink tLinks : relativeLinks) {
+					System.out.println(BeanUtils.describe(tLinks));
+				}
+			}
+		}
+	}
+	
+	//
+	public void testRelativesCrawler() throws Exception {
+		String seed = "http://s.taobao.com/search?q=奥迪&suggest=0_1&wq=aodi&suggest_query=aodi&source=suggest&initiative_id=tbindexz_20131028&spm=1.6659421.754896237.1&sourceId=tb.index&search_type=item&ssid=s5-e&commend=all";
+		List<Object> crawlersLocalData = new CoreController().crawling(seed, RelativeWordsCrawler.class);
+		if (CollectionUtils.isNotEmpty(crawlersLocalData)) {
+			List<TLink> relativeLinks = (List<TLink>) crawlersLocalData.get(0);
+			if (CollectionUtils.isNotEmpty(relativeLinks)) {
+				for (TLink tLinks : relativeLinks) {
 					System.out.println(BeanUtils.describe(tLinks));
 				}
 			}
 		}
 	}
 
-	public void testCrawler() throws Exception {
+	public void testHtmlUnitAJsoup() throws Exception {
 		/**HtmlUnit请求web页面*/
 		WebClient wc = new WebClient();
 		wc.getOptions().setJavaScriptEnabled(true); //启用JS解释器，默认为true

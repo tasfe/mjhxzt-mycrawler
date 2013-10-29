@@ -8,19 +8,19 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 
-import com.mycrawler.pojo.TLinks;
+import com.mycrawler.pojo.TLink;
 
 /**
  * Home object for domain model class TLinks.
  * 
- * @see pojo.TLinks
+ * @see TLink.TLinks
  * @author Hibernate Tools
  */
 public class TLinksHome extends HibernateDaoBase {
 
 	private static final Log log = LogFactory.getLog(TLinksHome.class);
 
-	public List list(TLinks transientInstance) {
+	public List list(TLink transientInstance) {
 		log.debug("List TLinks instance");
 		try {
 			return this.getHibernateTemplate().findByExample(transientInstance);
@@ -30,7 +30,7 @@ public class TLinksHome extends HibernateDaoBase {
 		}
 	}
 	
-	public void persist(TLinks transientInstance) {
+	public void persist(TLink transientInstance) {
 		log.debug("persisting TLinks instance");
 		try {
 			this.getHibernateTemplate().save(transientInstance);
@@ -41,7 +41,7 @@ public class TLinksHome extends HibernateDaoBase {
 		}
 	}
 
-	public void attachDirty(TLinks instance) {
+	public void attachDirty(TLink instance) {
 		log.debug("attaching dirty TLinks instance");
 		try {
 			this.getHibernateTemplate().saveOrUpdate(instance);
@@ -52,7 +52,7 @@ public class TLinksHome extends HibernateDaoBase {
 		}
 	}
 
-	public void attachClean(TLinks instance) {
+	public void attachClean(TLink instance) {
 		log.debug("attaching clean TLinks instance");
 		try {
 			this.getHibernateTemplate().lock(instance, LockMode.NONE);
@@ -63,7 +63,7 @@ public class TLinksHome extends HibernateDaoBase {
 		}
 	}
 
-	public void delete(TLinks persistentInstance) {
+	public void delete(TLink persistentInstance) {
 		log.debug("deleting TLinks instance");
 		try {
 			this.getHibernateTemplate().delete(persistentInstance);
@@ -74,10 +74,10 @@ public class TLinksHome extends HibernateDaoBase {
 		}
 	}
 
-	public TLinks merge(TLinks detachedInstance) {
+	public TLink merge(TLink detachedInstance) {
 		log.debug("merging TLinks instance");
 		try {
-			TLinks result = (TLinks) this.getHibernateTemplate().merge(
+			TLink result = (TLink) this.getHibernateTemplate().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -87,11 +87,11 @@ public class TLinksHome extends HibernateDaoBase {
 		}
 	}
 
-	public TLinks findById(java.lang.Integer id) {
+	public TLink findById(java.lang.Integer id) {
 		log.debug("getting TLinks instance with id: " + id);
 		try {
-			TLinks instance = (TLinks) this.getHibernateTemplate().get(
-					TLinks.class, id);
+			TLink instance = (TLink) this.getHibernateTemplate().get(
+					TLink.class, id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {

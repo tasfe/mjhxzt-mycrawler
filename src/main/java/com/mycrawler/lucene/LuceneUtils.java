@@ -5,6 +5,9 @@ import java.io.IOException;
 
 import net.paoding.analysis.analyzer.PaodingAnalyzer;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
@@ -17,6 +20,7 @@ public class LuceneUtils {
 	private static Directory directory;
 	private static Analyzer analyzer;
 	private static IndexWriterConfig config;
+	private static Log logger = LogFactory.getLog(LuceneUtils.class);
 
 	static {
 		analyzer = new PaodingAnalyzer();
@@ -29,6 +33,7 @@ public class LuceneUtils {
 	}
 
 	public static void write(Document doc) throws IOException {
+		logger.info("Writing document to index...");
 		IndexWriter writer = new IndexWriter(directory, config);
 		writer.addDocument(doc);
 		writer.commit();

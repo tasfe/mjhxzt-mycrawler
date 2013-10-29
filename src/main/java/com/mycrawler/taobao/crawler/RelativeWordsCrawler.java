@@ -14,7 +14,7 @@ import org.jsoup.select.Elements;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.mycrawler.pojo.TLinks;
+import com.mycrawler.pojo.TLink;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
@@ -31,7 +31,7 @@ public class RelativeWordsCrawler extends WebCrawler {
 
 	private static final Logger logger = Logger.getLogger(RelativeWordsCrawler.class);
 	
-	private List<TLinks> relativeLinks = new ArrayList<TLinks>();
+	private List<TLink> relativeLinks = new ArrayList<TLink>();
 	
 	private Pattern filters = Pattern.compile("^http://s.taobao.com/search\\?q=(.*)&rsclick=(\\d+)$");
 	/**
@@ -54,13 +54,13 @@ public class RelativeWordsCrawler extends WebCrawler {
 			String html = htmlParseData.getHtml();
 //			System.out.println(html);
 			
-			Document doc = Jsoup.parse(html);
+			/*Document doc = Jsoup.parse(html);
 			Elements eles = doc.select("a[trace='relatedSearch']");
 			if (eles != null && eles.size() > 0) {
 				for (Element child : eles) {
 //					System.out.println(child.text() + ":" + child.attr("abs:href"));
 				}
-			}
+			}*/
 			
 			
 			List<WebURL> links = htmlParseData.getOutgoingUrls();
@@ -68,7 +68,7 @@ public class RelativeWordsCrawler extends WebCrawler {
 				if (isRelativeLink(webURL)) {
 					logger.info("发现相关词，深度：" + webURL.getDepth() + "，链接："
 							+ webURL.getURL() + "名称：" + webURL.getAnchor() + webURL.getParentDocid());
-					TLinks link = new TLinks();
+					TLink link = new TLink();
 					link.setAnchor(webURL.getAnchor());
 					link.setUrl(webURL.getURL());
 					link.setDepth(webURL.getDepth());

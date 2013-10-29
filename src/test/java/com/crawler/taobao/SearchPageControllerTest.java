@@ -12,7 +12,7 @@ import org.apache.commons.collections.CollectionUtils;
 import com.mycrawler.core.CoreController;
 import com.mycrawler.dao.DaoFactory;
 import com.mycrawler.dao.TLinksHome;
-import com.mycrawler.pojo.TLinks;
+import com.mycrawler.pojo.TLink;
 import com.mycrawler.pojo.TSeed;
 import com.mycrawler.taobao.controller.SearchPageController;
 import com.mycrawler.taobao.crawler.RelativeWordsCrawler;

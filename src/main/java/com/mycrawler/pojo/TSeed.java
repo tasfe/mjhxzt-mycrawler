@@ -2,8 +2,9 @@ package com.mycrawler.pojo;
 
 // Generated 2013-5-19 23:29:56 by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,9 +13,10 @@ import java.util.Set;
 public class TSeed implements java.io.Serializable {
 
 	private Integer id;
-	private String seed;
+	private String seed; //url
+	private String key; //搜索关键词
 	private Date lastVisitTime;
-	private Set TLinkses = new HashSet(0);
+	private List TLinkses = new ArrayList(0);
 
 	public TSeed() {
 	}
@@ -23,7 +25,7 @@ public class TSeed implements java.io.Serializable {
 		this.seed = seed;
 	}
 
-	public TSeed(String seed, Date lastVisitTime, Set TLinkses) {
+	public TSeed(String seed, Date lastVisitTime, List TLinkses) {
 		this.seed = seed;
 		this.lastVisitTime = lastVisitTime;
 		this.TLinkses = TLinkses;
@@ -53,12 +55,20 @@ public class TSeed implements java.io.Serializable {
 		this.lastVisitTime = lastVisitTime;
 	}
 
-	public Set getTLinkses() {
+	public List getTLinkses() {
 		return this.TLinkses;
 	}
 
-	public void setTLinkses(Set TLinkses) {
+	public void setTLinkses(List TLinkses) {
 		this.TLinkses = TLinkses;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 }

@@ -1,7 +1,7 @@
 package dao;
 
 import com.mycrawler.dao.TLinksHome;
-import com.mycrawler.pojo.TLinks;
+import com.mycrawler.pojo.TLink;
 import com.mycrawler.pojo.TSeed;
 
 public class TLinksHomeTest extends TestBase {
@@ -14,7 +14,7 @@ public class TLinksHomeTest extends TestBase {
 	public void testQuery() {
 		TSeed instance = new TSeed();
 		instance.setId(13);
-		TLinks cLinks = new TLinks();
+		TLink cLinks = new TLink();
 		cLinks.setTSeed(instance);
 		System.out.println(linksHome.list(cLinks));
 		
