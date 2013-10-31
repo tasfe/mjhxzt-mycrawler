@@ -5,8 +5,8 @@
  <session-factory name="mycrawler">
   <property name="show_sql">true</property>
   <property name="current_session_context_class">thread</property>
-  <mapping resource="pojo/TLinks.hbm.xml" />
-  <mapping resource="pojo/TSeed.hbm.xml" /> 
-  <mapping resource="pojo/TAction.hbm.xml" /> 
+  <mapping resource="com/mycrawler/pojo/TLink.hbm.xml" />
+  <mapping resource="com/mycrawler/pojo/TSeed.hbm.xml" /> 
+  <mapping resource="com/mycrawler/pojo/TAction.hbm.xml" /> 
  </session-factory>
 </hibernate-configuration>

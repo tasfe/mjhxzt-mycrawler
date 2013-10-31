@@ -8,17 +8,21 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
+        <property name="key" type="string">
+            <column name="keyword" length="50"  />
+        </property>
         <property name="seed" type="string">
             <column name="seed" length="200" not-null="true" />
         </property>
         <property name="lastVisitTime" type="timestamp">
             <column name="last_visit_time" length="19" />
         </property>
-        <set name="TLinkses" table="t_links" inverse="true" lazy="false" fetch="select">
+        <list name="TLinkses" table="t_link" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="seed_id" />
             </key>
-            <one-to-many class="pojo.TLinks" />
-        </set>
+            <index column="id" />
+            <one-to-many class="com.mycrawler.pojo.TLink" />
+        </list>
     </class>
 </hibernate-mapping>

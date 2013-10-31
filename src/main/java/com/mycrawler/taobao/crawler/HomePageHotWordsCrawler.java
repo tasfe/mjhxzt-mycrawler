@@ -8,13 +8,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dom4j.Document;
 import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.HasAttributeFilter;
@@ -23,7 +18,10 @@ import org.htmlparser.tags.LinkTag;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 import org.htmlparser.util.SimpleNodeIterator;
-import org.xml.sax.SAXException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import com.mycrawler.pojo.TLink;
 
@@ -67,33 +65,22 @@ public class HomePageHotWordsCrawler extends WebCrawler {
 			HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 			String html = htmlParseData.getHtml();
 			
-			//获取html
-//			System.out.println(html);
-			parseLinks(html);
+			Document doc = Jsoup.parse(html, "http://www.taobao.com"); 
+			Elements links = doc.select("div.search-hots>a");
 			
-			List<WebURL> links = htmlParseData.getOutgoingUrls();
-			for (WebURL webURL : links) {
-				if (isRelativeLink(webURL)) {
-					log.info("发现相关词，深度：" + webURL.getDepth() + "，链接："
-							+ webURL.getURL() + "名称：" + webURL.getAnchor());
-					Matcher m = filters.matcher(webURL.getURL().toLowerCase());
-					if (m.matches()) {
-						String anchor = "";
-						try {
-							anchor = new String (URLDecoder.decode(m.group(3), "gbk").getBytes(),"utf-8");
-						} catch (UnsupportedEncodingException e) {
-							log.error(e);
-						}
-						TLink link = new TLink();
-						link.setAnchor(anchor);
-						link.setUrl(webURL.getURL());
-						link.setDepth(webURL.getDepth());
-						link.setParentDocId(webURL.getParentDocid());
-						link.setCreateTime(new Date());
-						relativeLinks.add(link);
-					}
+			for (Element ele : links) {
+					log.info("发现相关词，链接："
+							+ ele.absUrl("href") + "名称：" + ele.text());
+					
+					TLink link = new TLink();
+					link.setAnchor(ele.text());
+					link.setUrl(ele.absUrl("href"));
+					link.setDepth(0);
+					link.setParentDocId(0);
+					link.setCreateTime(new Date());
+					relativeLinks.add(link);
+				
 
-				}
 			}
 		}
 	}

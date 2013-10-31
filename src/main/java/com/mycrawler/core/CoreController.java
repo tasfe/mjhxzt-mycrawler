@@ -2,6 +2,11 @@ package com.mycrawler.core;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.mycrawler.lucene.LuceneUtils;
+
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
@@ -9,6 +14,8 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class CoreController {
 
+	private static Log logger = LogFactory.getLog(CoreController.class);
+	
 	/**
 	 * 爬取淘宝搜索相关字
 	 * 
@@ -20,7 +27,7 @@ public class CoreController {
 		if (seed == null || seed == "") {
 			return null;
 		}
-		
+		logger.info("Crawling url:" + seed);
 		String crawlStorageFolder = "E:/data/crawl/root";
 		int numberOfCrawlers = 1;
 
@@ -30,7 +37,7 @@ public class CoreController {
 		config.setMaxDepthOfCrawling(0);
 		config.setPolitenessDelay(3000);
 		// config.setMaxPagesToFetch(10);
-		// config.setResumableCrawling(true);
+//		 config.setResumableCrawling(true);
 		/*
 		 * Instantiate the controller for this crawl.
 		 */

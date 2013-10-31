@@ -28,14 +28,10 @@
 
 	
 
-	<bean id="hibernateDaoBase" class="dao.HibernateDaoBase">
+	<bean id="hibernateDaoBase" class="com.mycrawler.dao.HibernateDaoBase">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
-
-	<bean id="TLinksHome" class="dao.TLinksHome">
-		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>

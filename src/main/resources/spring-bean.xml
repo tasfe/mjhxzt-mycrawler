@@ -9,7 +9,12 @@
            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
-	<bean id="TSeedHome" class="dao.TSeedHome">
+	<bean id="TSeedHome" class="com.mycrawler.dao.TSeedHome">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="TLinksHome" class="com.mycrawler.dao.TLinksHome">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
