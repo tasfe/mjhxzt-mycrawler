@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-5-19 23:29:56 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.mycrawler.pojo.TLink" table="t_link" catalog="mycrawler">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="TSeed" class="com.mycrawler.pojo.TSeed" fetch="select">
+            <column name="seed_id" />
+        </many-to-one>
+        <property name="depth" type="int">
+            <column name="DEPTH" not-null="true">
+                <comment>&#201;&#238;&#182;&#200;</comment>
+            </column>
+        </property>
+        <property name="anchor" type="string">
+            <column name="ANCHOR" length="50">
+                <comment>&#189;&#211;&#193;&#180;&#195;&#251;&#179;&#198;</comment>
+            </column>
+        </property>
+        <property name="url" type="string">
+            <column name="URL" length="500">
+                <comment>&#193;&#180;&#189;&#211;&#181;&#216;&#214;&#183;</comment>
+            </column>
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="CREATE_TIME" length="19">
+                <comment>&#180;&#180;&#189;&#168;&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="docId" type="java.lang.Integer">
+            <column name="DOC_ID">
+                <comment>&#206;&#196;&#181;&#181;ID</comment>
+            </column>
+        </property>
+        <property name="parentDocId" type="java.lang.Integer">
+            <column name="PARENT_DOC_ID">
+                <comment>&#184;&#184;&#206;&#196;&#181;&#181;ID</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
